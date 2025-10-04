@@ -1,0 +1,124 @@
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor 🩺</title>
+    <style>
+        /* CSS for Styling */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #007BFF;
+            margin-bottom: 10px;
+        }
+
+        .disclaimer {
+            background-color: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeeba;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+            font-size: 0.9em;
+            font-weight: bold;
+        }
+
+        textarea {
+            width: 100%;
+            height: 100px;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            margin-bottom: 20px;
+            font-size: 1em;
+            resize: vertical;
+        }
+
+        button {
+            background-color: #007BFF;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #response {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #e9ecef;
+            border-radius: 5px;
+            text-align: left;
+            display: none; /* Hidden by default */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Doctor AI 🩺</h1>
+        <p>Describe your symptoms, and I'll provide some basic information.</p>
+
+        <div class="disclaimer">
+            <strong>Disclaimer:</strong> I am not a real doctor. This tool is for informational purposes only. Please consult a qualified healthcare professional for any medical advice or diagnosis.
+        </div>
+
+        <textarea id="symptoms" placeholder="For example: I have a sore throat, a runny nose, and a slight fever..."></textarea>
+        <button onclick="getDiagnosis()">Ask Doctor AI</button>
+
+        <div id="response">
+            </div>
+    </div>
+
+    <script>
+        // JavaScript for the AI Logic
+        function getDiagnosis() {
+            const symptomsInput = document.getElementById('symptoms').value.toLowerCase();
+            const responseDiv = document.getElementById('response');
+            let diagnosis = '';
+
+            // --- Basic Keyword-Based "AI" Logic ---
+
+            if (symptomsInput.includes('sore throat') && (symptomsInput.includes('runny nose') || symptomsInput.includes('cough'))) {
+                diagnosis = `
+                    <h3>Possible Condition: Common Cold</h3>
+                    <p><strong>Information:</strong> The common cold is a viral infection of your nose and throat. It's generally harmless, although it might not feel that way.</p>
+                    <p><strong>Suggested Self-Care:</strong> Get plenty of rest, drink fluids, and soothe a sore throat with lozenges or salt-water gargles.</p>
+                    <p><strong>Over-the-Counter Medication:</strong> You might consider pain relievers like Ibuprofen or Acetaminophen for aches and fever. Decongestants can help with a stuffy nose.</p>
+                `;
+            } else if (symptomsInput.includes('headache') && (symptomsInput.includes('nausea') || symptomsInput.includes('light sensitivity'))) {
+                diagnosis = `
+                    <h3>Possible Condition: Migraine</h3>
+                    <p><strong>Information:</strong> A migraine can cause severe throbbing pain or a pulsing sensation, usually on one side of the head. It's often accompanied by nausea, vomiting, and extreme sensitivity to light and sound.</p>
+                    <p><strong>Suggested Self-Care:</strong> Rest in a quiet, dark room. A cool compress on your forehead may help.</p>
+                    <p><strong>Over-the-Counter Medication:</strong> Pain relievers like Ibuprofen, Aspirin, or Naproxen can help with mild migraines.</p>
+                `;
+            } else if ((symptomsInput.includes('stomach ache') || symptomsInput.includes('stomach pain')) && symptomsInput.includes('cramps')) {
+       
